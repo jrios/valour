@@ -147,6 +147,19 @@ describe('ValidationUnit', () => {
       unit = new ValidationUnit().isEmail();
     });
 
+    it('sets hasProvidedValue to false if the current ValidationUnit has no current value', () => {
+      unit.value = undefined;
+
+      expect(unit.getState().hasProvidedValue).to.be.false;
+    });
+
+    it('sets hasProvidedValue to true if the current ValidationUnit has a value', () => {
+      unit.value = "test";
+      unit.hasProvidedValue = undefined;
+
+      expect(unit.getState().hasProvidedValue).to.be.true;
+    });
+
     it('sets valid to true if the current ValidationUnit is not required, the unit has no current value, and valid has no current value', () => {
       unit.value = undefined;
       unit.valid = undefined;

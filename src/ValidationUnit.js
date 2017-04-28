@@ -150,14 +150,16 @@ export default class ValidationUnit {
   }
 
   getState() {
-    let {valid, messages, waiting} = this;
+    let {valid, messages, waiting, hasProvidedValue} = this;
     valid = (!this.shouldCheckValue(this.value) && this.valid === undefined) ? true : valid;
     valid = (valid === undefined) ? valid :
       (waiting) ? undefined : valid;
+    hasProvidedValue = !isUndefined(this.value);
     return {
       waiting: !!waiting,
       valid,
-      messages
+      messages,
+      hasProvidedValue
     };
   }
 
